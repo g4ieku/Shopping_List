@@ -1,6 +1,7 @@
 const itemForm = document.querySelector("#item-form");
 const itemInput = document.querySelector("#item-input");
 const itemList = document.querySelector("#item-list");
+const clearBtn = document.querySelector("#clear");
 
 const addItem = (event) => {
   event.preventDefault();
@@ -33,4 +34,18 @@ const createNewItem = (item) => {
   itemList.appendChild(li);
 };
 
+const removeItem = (event) => {
+  if (event.target.parentElement.classList.contains("remove-item")) {
+    event.target.parentElement.parentElement.remove();
+  }
+};
+
+const removeAllItems = () => {
+  itemList.querySelectorAll("li").forEach((item) => {
+    item.remove();
+  });
+};
+
 itemForm.addEventListener("submit", addItem);
+itemList.addEventListener("click", removeItem);
+clearBtn.addEventListener("click", removeAllItems);
